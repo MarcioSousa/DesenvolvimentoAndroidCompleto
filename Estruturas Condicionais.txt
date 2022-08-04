@@ -22,3 +22,17 @@ while(numero < postagens.length){
 	System.out.println("####");
 	numero = numero + 1;	
 }
+
+//=====================
+//====== EXECUTA PRIMEIRO PARA DEPOIS TESTAR A CONDIÇÃO. ========
+int numero = 1;
+
+do{
+	System.out.println("numero");
+	numero ++;
+}while(numero < 1);
+
+//======= FOR ========
+for(int n = 1; n <= 5; n++){
+	System.out.println(n);
+}
