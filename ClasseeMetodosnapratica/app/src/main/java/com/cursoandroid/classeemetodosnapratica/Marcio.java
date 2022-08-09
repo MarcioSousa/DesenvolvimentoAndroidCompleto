@@ -10,18 +10,9 @@ package com.cursoandroid.classeemetodosnapratica;
     executá-las de maneiras diferentes.
 */
 
-public class ContaBancaria {
-
-    private int numeroConta;
-    private double saldo;
-
-    public ContaBancaria(){
-        System.out.println("Contrutor chamado.");
+public class Marcio extends Cidadao implements Presidente {
+    @Override
+    public void ganharEleicao() {
+        System.out.println("Ganhar uma eleição no Brasil.");
     }
-
-    public ContaBancaria(int nConta){
-        this.numeroConta = nConta;
-        System.out.println("Contrutor chamado com numero " + this.numeroConta);
-    }
-
 }

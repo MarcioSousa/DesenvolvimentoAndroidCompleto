@@ -1,5 +1,4 @@
 package com.cursoandroid.classeemetodosnapratica;
-
 /*
     ======= INTERFACE ========
     Pode-se dizer a grosso modo, que uma interface é um contrato
@@ -9,19 +8,11 @@ package com.cursoandroid.classeemetodosnapratica;
     que podem possuir a mesma ação (métodos) porém, podem
     executá-las de maneiras diferentes.
 */
+public class OutroNome extends Cidadao implements Presidente {
 
-public class ContaBancaria {
-
-    private int numeroConta;
-    private double saldo;
-
-    public ContaBancaria(){
-        System.out.println("Contrutor chamado.");
-    }
-
-    public ContaBancaria(int nConta){
-        this.numeroConta = nConta;
-        System.out.println("Contrutor chamado com numero " + this.numeroConta);
+    @Override
+    public void ganharEleicao() {
+        System.out.println("Ganhar uma eleição nos Estados Unidos.");
     }
 
 }
