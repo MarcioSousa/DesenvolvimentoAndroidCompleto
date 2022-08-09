@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.Random;
@@ -28,7 +29,8 @@ public class MainActivity extends AppCompatActivity {
         //GERA NÚMEROS 0, 1, 2, 3
         int numero = new Random().nextInt(4);
 
-        TextView texto = findViewById(R.id.txttResultado);
+        TextView texto = findViewById(R.id.txtResultado);
+
         texto.setText(frases[numero]);
     }
 
