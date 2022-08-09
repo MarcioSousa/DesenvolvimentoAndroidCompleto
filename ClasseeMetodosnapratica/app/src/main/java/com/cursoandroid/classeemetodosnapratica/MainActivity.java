@@ -13,8 +13,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Conta conta = new Conta();
-
+        Pessoa pessoa = new Pessoa();
+        pessoa.exibirDados("Marcio Sousa");
+        pessoa.exibirDados("Marcio Sousa",38);
 
 
 

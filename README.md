@@ -7,4 +7,5 @@
 06 - Criando seu primeiro App no Android Studio.</br>
 07 - Layouts.</br>
 08 - Algoritmo básico.</br>
-09 - Aprenda a Linguagem de Programação Java do Zero.
+09 - Aprenda a Linguagem de Programação Java do Zero.</br>
+10 - Aprenda orientação a objetos com Java.</br>
