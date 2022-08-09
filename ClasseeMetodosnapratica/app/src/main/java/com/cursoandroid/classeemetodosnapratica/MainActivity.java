@@ -13,17 +13,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        ContaBancaria conta = new ContaBancaria();
+        ContaBancaria conta2 = new ContaBancaria(10);
+
+
+ /*
         Pessoa pessoa = new Pessoa();
         pessoa.exibirDados("Marcio Sousa");
         pessoa.exibirDados("Marcio Sousa",38);
 
 
-
-
-
-
-
- /*
         Conta conta = new Conta();
         conta.depositar(100); // 200
         conta.sacar(50); //150
