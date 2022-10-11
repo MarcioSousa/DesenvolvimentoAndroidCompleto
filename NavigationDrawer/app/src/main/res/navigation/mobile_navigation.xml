@@ -6,6 +6,12 @@
     app:startDestination="@+id/nav_home">
 
     <fragment
+        android:id="@+id/nav_contato"
+        android:name="com.cursoandroid.navigationdrawer.ui.contato.ContatoFragment"
+        android:label="@string/menu_contato"
+        tools:layout="@layout/fragment_contato" />
+
+    <fragment
         android:id="@+id/nav_home"
         android:name="com.cursoandroid.navigationdrawer.ui.home.HomeFragment"
         android:label="@string/menu_home"
