@@ -30,24 +30,28 @@ public class MainActivity extends AppCompatActivity {
 
         setSupportActionBar(binding.appBarMain.toolbar);
 
+        //Cria referência para toda a área do NavigationDrawer.
         DrawerLayout drawer = binding.drawerLayout;
+
+        //Cria referência para a área de navegação
         NavigationView navigationView = binding.navView;
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
+
+        // Define configurações do NavigationDrawer.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow)
                 .setOpenableLayout(drawer)
                 .build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
-        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
-        NavigationUI.setupWithNavController(navigationView, navController);
-    }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
+        //Configura área que irá carregar os fragments
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
+
+        //Configura menu superior de navegação
+        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
+
+        //Configura navegação para o NavigationView
+        NavigationUI.setupWithNavController(navigationView, navController);
     }
 
     @Override
@@ -56,4 +60,13 @@ public class MainActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
+
+    //@Override
+    //public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+    //    getMenuInflater().inflate(R.menu.main, menu);
+    //    return true;
+    //}
+
+
 }
