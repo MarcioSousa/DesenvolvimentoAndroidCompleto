@@ -1,5 +1,7 @@
 package com.cursoandroid.atmconsultoria;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
@@ -32,8 +34,7 @@ public class MainActivity extends AppCompatActivity {
         binding.appBarMain.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                enviarEmail();
             }
         });
         DrawerLayout drawer = binding.drawerLayout;
@@ -53,6 +54,29 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationView, navController);
     }
 
+    public void enviarEmail(){
+        String celular = "tel:11962883301";
+        String imagem = "https://www.melhoresdestinos.com.br/wp-content/uploads/2020/06/praias-brasil-sancho.jpg";
+        String endereco = "https://www.google.com/maps/place/PoupaPinga/@-23.2685982,-47.3171805,3a,75y,8.14h,90t/data=!3m7!1e1!3m5!1sxCXpuNTYHF2lhNgdtnJDEg!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fpanoid%3DxCXpuNTYHF2lhNgdtnJDEg%26cb_client%3Dsearch.gws-prod.gps%26w%3D86%26h%3D86%26yaw%3D8.144702%26pitch%3D0%26thumbfov%3D100!7i16384!8i8192!4m8!1m2!2m1!1spraia!3m4!1s0x94cf5069536504df:0x55a37d537384bc9c!8m2!3d-23.2684919!4d-47.3171847";
+
+
+        //Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse(celular));
+        //Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(imagem));
+        //Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(endereco));
+        Intent intent = new Intent(Intent.ACTION_SEND);
+
+        intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"atendimento@atmconsultoria.com.br"});
+        intent.putExtra(Intent.EXTRA_SUBJECT, "Contato pelo App.");
+        intent.putExtra(Intent.EXTRA_TEXT, "Mensagem automática.");
+
+        intent.setType("message/rfc822");
+        //intent.setType("text/plain");
+        //intent.setType("image/*");
+        //intent.setType("application/pdf*");
+
+        startActivity(Intent.createChooser(intent, "Escolha um App de e-mail."));
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -66,4 +90,6 @@ public class MainActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
+
+
 }
