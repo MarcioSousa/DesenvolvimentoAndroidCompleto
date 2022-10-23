@@ -6,10 +6,12 @@ import android.os.Bundle;
 import com.cursoandroid.listadetarefas.R;
 import com.cursoandroid.listadetarefas.adapter.TarefaAdapter;
 import com.cursoandroid.listadetarefas.databinding.ActivityMainBinding;
+import com.cursoandroid.listadetarefas.helper.RecyclerItemClickListener;
 import com.cursoandroid.listadetarefas.model.Tarefa;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.util.Log;
 import android.view.View;
 
 import androidx.navigation.ui.AppBarConfiguration;
@@ -17,6 +19,7 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.Toolbar;
 
@@ -46,6 +49,30 @@ public class MainActivity extends AppCompatActivity {
 
         //configurar recycler
         recyclerView = findViewById(R.id.recyclerView);
+
+        //Adicionar evento de clique
+        recyclerView.addOnItemTouchListener(
+                new RecyclerItemClickListener(
+                        getApplicationContext(),
+                        recyclerView,
+                        new RecyclerItemClickListener.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(View view, int position) {
+                                Log.i("clique", "onItemClick");
+                            }
+
+                            @Override
+                            public void onLongItemClick(View view, int position) {
+                                Log.i("clique", "onLongItemClick");
+                            }
+
+                            @Override
+                            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                            }
+                        }
+                )
+        );
 
         binding.fab.setOnClickListener(new View.OnClickListener() {
             @Override
