@@ -1,11 +1,13 @@
 package com.cursoandroid.listadetarefas.activity;
 
+import android.content.ContentValues;
 import android.content.Intent;
 import android.os.Bundle;
 
 import com.cursoandroid.listadetarefas.R;
 import com.cursoandroid.listadetarefas.adapter.TarefaAdapter;
 import com.cursoandroid.listadetarefas.databinding.ActivityMainBinding;
+import com.cursoandroid.listadetarefas.helper.DbHelper;
 import com.cursoandroid.listadetarefas.helper.RecyclerItemClickListener;
 import com.cursoandroid.listadetarefas.model.Tarefa;
 
@@ -49,6 +51,12 @@ public class MainActivity extends AppCompatActivity {
 
         //configurar recycler
         recyclerView = findViewById(R.id.recyclerView);
+
+        //configuração de base de dados (DbHelper)
+        //DbHelper db = new DbHelper(getApplicationContext());
+        //ContentValues cv = new ContentValues();
+        //cv.put("nome", "Teste");
+        //db.getWritableDatabase().insert("tarefas",null, cv);
 
         //Adicionar evento de clique
         recyclerView.addOnItemTouchListener(
