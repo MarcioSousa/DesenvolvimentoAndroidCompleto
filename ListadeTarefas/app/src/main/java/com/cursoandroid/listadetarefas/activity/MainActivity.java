@@ -9,6 +9,7 @@ import com.cursoandroid.listadetarefas.adapter.TarefaAdapter;
 import com.cursoandroid.listadetarefas.databinding.ActivityMainBinding;
 import com.cursoandroid.listadetarefas.helper.DbHelper;
 import com.cursoandroid.listadetarefas.helper.RecyclerItemClickListener;
+import com.cursoandroid.listadetarefas.helper.TarefaDAO;
 import com.cursoandroid.listadetarefas.model.Tarefa;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -66,7 +67,14 @@ public class MainActivity extends AppCompatActivity {
                         new RecyclerItemClickListener.OnItemClickListener() {
                             @Override
                             public void onItemClick(View view, int position) {
-                                Log.i("clique", "onItemClick");
+                                //Log.i("clique", "onItemClick");
+                                //Recuperando tarefa para edição
+                                Tarefa tarefaSelecionada = listaTarefas.get(position);
+
+                                //Envia tarefa para tela adicionar tarefa
+                                Intent intent = new Intent(MainActivity.this, AdicionarTarefaActivity.class);
+                                intent.putExtra("tarefaSelecionada", tarefaSelecionada);
+                                startActivity(intent);
                             }
 
                             @Override
@@ -93,13 +101,15 @@ public class MainActivity extends AppCompatActivity {
 
     public void carregarListaTarefas(){
         //Listar tarefas
-        Tarefa tarefa1 = new Tarefa();
-        tarefa1.setNomeTarefa("Ir ao mercado");
-        listaTarefas.add(tarefa1);
+        //Tarefa tarefa1 = new Tarefa();
+        //tarefa1.setNomeTarefa("Ir ao mercado");
+        //listaTarefas.add(tarefa1);
 
-        Tarefa tarefa2 = new Tarefa();
-        tarefa2.setNomeTarefa("Ir a feira");
-        listaTarefas.add(tarefa2);
+        //Tarefa tarefa2 = new Tarefa();
+        //tarefa2.setNomeTarefa("Ir a feira");
+        //listaTarefas.add(tarefa2);
+        TarefaDAO tarefaDAO = new TarefaDAO(getApplicationContext());
+        listaTarefas = tarefaDAO.listar();
 
         /*
         Exibe lista de tarefas no RecyclerView
