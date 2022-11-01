@@ -15,6 +15,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity {
@@ -28,17 +29,39 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         DatabaseReference usuarios = referencia.child("usuarios");
 
-        Usuario usuario = new Usuario();
-        usuario.setNome("Marcio");
-        usuario.setSobrenome("Sousa");
-        usuario.setIdade(38);
+        /*Aplicando filtros
+        DatabaseReference usuarioPesquisa = usuarios.child("-NFotL5V_6oiQqsSN7CH");
+        Query usuarioPesquisa = usuarios.orderByChild("nome").equalTo("Marcio");
+        Query usuarioPesquisa = usuarios.orderByKey().limitToFirst(2);*/
+        Query usuarioPesquisa = usuarios.orderByKey().limitToLast(2);
+
+
+        usuarioPesquisa.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                /*Usuario dadosUsuario = snapshot.getValue(Usuario.class);
+                Log.i("Dados usuario ", " nome: " + dadosUsuario.getNome() +
+                        " idade: " + dadosUsuario.getIdade() +
+                        " sobrenome: " + dadosUsuario.getSobrenome());*/
+                Log.i("Dados usuario ", snapshot.getValue().toString());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        /*Usuario usuario = new Usuario();
+        usuario.setNome("Rodrigo");
+        usuario.setSobrenome("Matos");
+        usuario.setIdade(35);
 
         //usuarios.child("001")
-        /*Gerando identificador único*/
-        usuarios.push().setValue(usuario);
+        /*Gerando identificador único
+        usuarios.push().setValue(usuario);*/
 
         /*Deslogar usuário
         usuario.signOut();*/
