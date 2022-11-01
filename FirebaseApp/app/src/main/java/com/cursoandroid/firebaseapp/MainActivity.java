@@ -28,12 +28,28 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        /*Deslogar usuário*/
+        usuario.signOut();
+
+        /*Logar usuario
+        usuario.signInWithEmailAndPassword("marcio22@gmail.com","a1b2c3d4")
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if(task.isSuccessful()){
+                            Log.i("SIGNIN","Sucesso ao Logar Usuário.");
+                        }else{
+                            Log.i("SIGNIN","Erro ao Logar Usuário.");
+                        }
+                    }
+                });*/
+
         /*Verifica usuario logado*/
         if(usuario.getCurrentUser() != null){
             //Está logado
-            Log.i("CREATEUSER", "Usuário logado.");
+            Log.i("CurrentUser", "Usuário logado.");
         }else{
-            Log.i("CREATEUSER", "Usuário não logado.");
+            Log.i("CurrentUser", "Usuário não logado.");
         }
 
 
