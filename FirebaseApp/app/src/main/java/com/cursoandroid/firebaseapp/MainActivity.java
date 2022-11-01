@@ -7,6 +7,10 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -14,14 +18,39 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity {
+    //Salvar dados no Firebase
     //private DatabaseReference referencia = FirebaseDatabase.getInstance().getReference("usuarios");
     private DatabaseReference referencia = FirebaseDatabase.getInstance().getReference();
+    private FirebaseAuth usuario = FirebaseAuth.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        /*Verifica usuario logado*/
+        if(usuario.getCurrentUser() != null){
+            //Está logado
+            Log.i("CREATEUSER", "Usuário logado.");
+        }else{
+            Log.i("CREATEUSER", "Usuário não logado.");
+        }
+
+
+        /*Cadastro de usuario
+        usuario.createUserWithEmailAndPassword("marcio22@gmail.com","a1b2c3d4")
+                .addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if(task.isSuccessful()){
+                            Log.i("CREATEUSER", "Sucesso ao cadastrar o usuário.");
+                        }else{
+                            Log.i("CREATEUSER", "Erro ao cadastrar o usuário.");
+                        }
+                    }
+                });*/
+
+        /*
         //Recuperando somente um dado.
         //DatabaseReference usuarios = referencia.child("usuarios").child("001");
         DatabaseReference usuarios = referencia.child("usuarios");
@@ -42,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        /*Usuario usuario = new Usuario();
+        Usuario usuario = new Usuario();
         usuario.setNome("Maria");
         usuario.setSobrenome("Souza");
         usuario.setIdade(22);
@@ -72,8 +101,6 @@ public class MainActivity extends AppCompatActivity {
         //referencia.child("pontos").setValue("100");
         //referencia.child("usuarios2").child("002").child("nome").setValue("Marcio Sousa");
         //referencia.child("usuarios2").child("002").child("nome").setValue("Marcio Sousa");
-
-
 
     }
 
