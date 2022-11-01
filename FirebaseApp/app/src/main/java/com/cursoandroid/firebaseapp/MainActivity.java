@@ -28,8 +28,20 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        /*Deslogar usuário*/
-        usuario.signOut();
+
+        DatabaseReference usuarios = referencia.child("usuarios");
+
+        Usuario usuario = new Usuario();
+        usuario.setNome("Marcio");
+        usuario.setSobrenome("Sousa");
+        usuario.setIdade(38);
+
+        //usuarios.child("001")
+        /*Gerando identificador único*/
+        usuarios.push().setValue(usuario);
+
+        /*Deslogar usuário
+        usuario.signOut();*/
 
         /*Logar usuario
         usuario.signInWithEmailAndPassword("marcio22@gmail.com","a1b2c3d4")
@@ -44,13 +56,13 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });*/
 
-        /*Verifica usuario logado*/
+        /*Verifica usuario logado
         if(usuario.getCurrentUser() != null){
             //Está logado
             Log.i("CurrentUser", "Usuário logado.");
         }else{
             Log.i("CurrentUser", "Usuário não logado.");
-        }
+        }*/
 
 
         /*Cadastro de usuario
