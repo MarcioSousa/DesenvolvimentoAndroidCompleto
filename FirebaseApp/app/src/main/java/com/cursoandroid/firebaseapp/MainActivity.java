@@ -34,9 +34,20 @@ public class MainActivity extends AppCompatActivity {
         /*Aplicando filtros
         DatabaseReference usuarioPesquisa = usuarios.child("-NFotL5V_6oiQqsSN7CH");
         Query usuarioPesquisa = usuarios.orderByChild("nome").equalTo("Marcio");
-        Query usuarioPesquisa = usuarios.orderByKey().limitToFirst(2);*/
-        Query usuarioPesquisa = usuarios.orderByKey().limitToLast(2);
+        Query usuarioPesquisa = usuarios.orderByKey().limitToFirst(2);
+        Query usuarioPesquisa = usuarios.orderByKey().limitToLast(2);*/
 
+        /*Maior ou igual (>=)
+        Query usuarioPesquisa = usuarios.orderByChild("idade").startAt(35);*/
+
+        /*Menos ou igual (<=)
+        Query usuarioPesquisa = usuarios.orderByChild("idade").endAt(22);*/
+
+        /*Entre dois valores
+        Query usuarioPesquisa = usuarios.orderByChild("idade").startAt(15).endAt(30);*/
+
+        /*Filtrar palavras (SEMPRE COLOCAR O \uf8ff igual está abaixo)*/
+        Query usuarioPesquisa = usuarios.orderByChild("nome").startAt("Ma").endAt("Me" + "\uf8ff");
 
         usuarioPesquisa.addValueEventListener(new ValueEventListener() {
             @Override
