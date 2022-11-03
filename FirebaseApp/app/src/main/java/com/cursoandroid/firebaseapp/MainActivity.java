@@ -13,6 +13,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -70,13 +72,47 @@ public class MainActivity extends AppCompatActivity {
 
                 //Define nós para o storage
                 StorageReference storageReference = FirebaseStorage.getInstance().getReference();
+                //StorageReference imagens = storageReference.child("imagens").child("foto-perfil");
                 StorageReference imagens = storageReference.child("imagens");
+                StorageReference imagemRef = imagens.child("celular.jpeg");
 
-                //Nome da imagem
+                /*Download do arquivo ou imagem do Storage
+                Glide.with(MainActivity.this)
+                        .using(new FirebaseImageLoader())
+                        .load(imagemRef)
+                        .into(imageFoto);*/
+                imagemRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        Glide.with(MainActivity.this).load(uri).into(imageFoto);
+                        Toast.makeText(MainActivity.this,
+                                "Sucesso ao alterar.",
+                                Toast.LENGTH_LONG).show();
+                    }
+                });
+
+                /*Deletar uma imagem ou arquivo do Storage
+                imagemRef.delete().addOnFailureListener(MainActivity.this, new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(MainActivity.this,
+                                "Erro ao deletar",
+                                Toast.LENGTH_LONG).show();
+                    }
+                }).addOnSuccessListener(MainActivity.this, new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Toast.makeText(MainActivity.this,
+                                "Sucesso ao deletar o arquivo.",
+                                Toast.LENGTH_LONG).show();
+                    }
+                });*/
+
+                /*Nome da imagem
                 String nomeArquivo = UUID.randomUUID().toString();
-                StorageReference imagemRef = imagens.child(nomeArquivo + ".jpeg");
+                StorageReference imagemRef = imagens.child("celular.jpeg");*/
 
-                //Retorna objeto que irá controlar o upload
+                /*Retorna objeto que irá controlar o upload
                 UploadTask uploadTask = imagemRef.putBytes(dadosImagem);
 
                 uploadTask.addOnFailureListener(MainActivity.this, new OnFailureListener() {
@@ -101,8 +137,8 @@ public class MainActivity extends AppCompatActivity {
                             }
                         });
                     }
-                });
-             }
+                });*/
+            }
         });
 
         /*DatabaseReference usuarios = referencia.child("usuarios");
@@ -241,5 +277,5 @@ public class MainActivity extends AppCompatActivity {
         //referencia.child("usuarios2").child("002").child("nome").setValue("Marcio Sousa");
 
     }
-
 }
+
